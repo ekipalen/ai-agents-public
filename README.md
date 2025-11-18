@@ -69,6 +69,22 @@ npm install
 
 ### Running the System
 
+**Option 1: Using Convenience Scripts (Recommended)**
+
+Open **2 terminals**:
+
+**Terminal 1 - Orchestrator**:
+\`\`\`bash
+./start_orchestrator.sh
+\`\`\`
+
+**Terminal 2 - Frontend**:
+\`\`\`bash
+./start_frontend.sh
+\`\`\`
+
+**Option 2: Manual Start**
+
 Open **2 terminals**:
 
 **Terminal 1 - Orchestrator**:
@@ -355,6 +371,23 @@ POST /agents/create
 - **Base class**: \`agentkit/agentkit/base.py\` - Core agent functionality
 - **Example**: \`agents/assistant/\` - Full-featured coordinator
 - **Template**: \`agents/worker_agent.py\` - Generic worker agent
+
+### Model Configuration
+
+Change the AI model and temperature settings in **\`agentkit/agentkit/constants.py\`**:
+
+\`\`\`python
+# Model Configuration
+DEFAULT_MODEL = "gpt-5-nano"
+DEFAULT_TEMPERATURE = 0.7
+\`\`\`
+
+Available models:
+- \`gpt-4o\` - Most capable (higher cost)
+- \`gpt-4o-mini\` - Balanced (recommended)
+- \`gpt-3.5-turbo\` - Fast and economical
+
+After changing the model, restart all agents and the orchestrator for the changes to take effect.
 
 ---
 

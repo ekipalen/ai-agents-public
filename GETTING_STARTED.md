@@ -190,6 +190,12 @@ Ready to accept connections
 
 ### Terminal 2: Start the Orchestrator
 
+**Option A - Using convenience script (recommended):**
+```bash
+./start_orchestrator.sh
+```
+
+**Option B - Manual start:**
 ```bash
 cd orchestrator
 source .venv/bin/activate
@@ -205,6 +211,12 @@ INFO:     Uvicorn running on http://0.0.0.0:9000
 
 ### Terminal 3: Start the Frontend
 
+**Option A - Using convenience script (recommended):**
+```bash
+./start_frontend.sh
+```
+
+**Option B - Manual start:**
 ```bash
 cd frontend
 npm run dev
