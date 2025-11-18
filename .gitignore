@@ -1,6 +1,12 @@
 # Environment variables
 .env
-.env.*
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+# But allow .env.example
+!.env.example
 
 # Python
 __pycache__/

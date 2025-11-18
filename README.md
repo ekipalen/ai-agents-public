@@ -226,8 +226,8 @@ Bob: ✅ Get Wikipedia Summary completed:
 
 ### Documentation
 
-- **[MCP_TOOLS_GUIDE.md](MCP_TOOLS_GUIDE.md)** - Complete MCP integration guide
-- **[MCP_SERVERS_CONFIG.md](MCP_SERVERS_CONFIG.md)** - Server configuration reference
+- **[MCP_TOOLS_GUIDE.md](docs/MCP_TOOLS_GUIDE.md)** - Complete MCP integration guide
+- **[MCP_SERVERS_CONFIG.md](docs/MCP_SERVERS_CONFIG.md)** - Server configuration reference
 
 ---
 
@@ -360,9 +360,9 @@ POST /agents/create
 
 ## 📚 Documentation
 
-- **[CURRENT_FEATURES.md](CURRENT_FEATURES.md)** - Comprehensive feature documentation
-- **[MCP_TOOLS_GUIDE.md](MCP_TOOLS_GUIDE.md)** - MCP tool integration guide
-- **[MCP_SERVERS_CONFIG.md](MCP_SERVERS_CONFIG.md)** - MCP server configuration
+- **[CURRENT_FEATURES.md](docs/CURRENT_FEATURES.md)** - Comprehensive feature documentation
+- **[MCP_TOOLS_GUIDE.md](docs/MCP_TOOLS_GUIDE.md)** - MCP tool integration guide
+- **[MCP_SERVERS_CONFIG.md](docs/MCP_SERVERS_CONFIG.md)** - MCP server configuration
 - **[orchestrator/README.md](orchestrator/README.md)** - Orchestrator API reference
 - **[frontend/README.md](frontend/README.md)** - Frontend development guide
 

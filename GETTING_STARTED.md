@@ -452,7 +452,7 @@ MCP (Model Context Protocol) lets you give agents access to external tools like:
 - This is an advanced feature for extending agent capabilities
 
 **If you want to explore this later:**
-1. Read **[MCP_TOOLS_GUIDE.md](MCP_TOOLS_GUIDE.md)**
+1. Read **[MCP_TOOLS_GUIDE.md](docs/MCP_TOOLS_GUIDE.md)**
 2. Set up your own MCP server (separate project)
 3. Configure agents to use your tools
 
@@ -559,7 +559,7 @@ Explore the REST API endpoints:
 - **[README.md](README.md)** - Main project overview
 - **[orchestrator/README.md](orchestrator/README.md)** - API reference
 - **[frontend/README.md](frontend/README.md)** - UI development
-- **[CURRENT_FEATURES.md](CURRENT_FEATURES.md)** - All features explained
+- **[CURRENT_FEATURES.md](docs/CURRENT_FEATURES.md)** - All features explained
 
 ---
 

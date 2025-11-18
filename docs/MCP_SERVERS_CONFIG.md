@@ -153,4 +153,4 @@ After configuring MCP servers:
 3. Restart orchestrator to discover tools
 4. Agents automatically get access to all tools from their assigned server
 
-For more details, see [MCP_INTEGRATION.md](docs/MCP_INTEGRATION.md).
+For more details, see [MCP_INTEGRATION.md](MCP_INTEGRATION.md).
