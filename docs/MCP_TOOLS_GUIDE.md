@@ -54,35 +54,22 @@ result = client.execute_action(
 
 **Location**: `agent_configs/{agent_name}.json`
 
-Define which tools each agent can execute:
+Assign MCP tools to an agent by referencing the server name from `action_servers.json`:
 
 ```json
 {
   "agent_name": "bob",
-  "action_server": {
-    "url": "https://your-mcp-server.example.com",
-    "token": "your-bearer-token",
-    "type": "mcp"
-  },
-  "actions": [
-    {
-      "id": "get_wikipedia_summary",
-      "name": "Get Wikipedia Summary",
-      "description": "Retrieves Wikipedia article summary",
-      "endpoint": "/api/actions/get-wikipedia-summary/run",
-      "parameters": [
-        {
-          "name": "article_url",
-          "type": "string",
-          "description": "URL of the article",
-          "required": true
-        }
-      ],
-      "enabled": true
-    }
-  ]
+  "action_server": "email_mcp"
 }
 ```
+
+That's it! The orchestrator will:
+1. Look up `email_mcp` in `action_servers.json`
+2. Auto-discover all tools from that server's OpenAPI spec
+3. Store the tools in the database
+4. Make them available to the agent
+
+**Note**: MCP server configuration (URL, auth, etc.) is centralized in `action_servers.json`. See [MCP_SERVERS_CONFIG.md](MCP_SERVERS_CONFIG.md) for details.
 
 ### 3. API Endpoints
 
@@ -167,11 +154,24 @@ Worker agents:
 
 ### Setting Up Tools for an Agent
 
-1. **Create Configuration File**
+1. **Configure MCP Server** (if not already done)
 
-Create `agent_configs/{agent_name}.json` with MCP server details and tools.
+First, add your MCP server to `action_servers.json`. See [MCP_SERVERS_CONFIG.md](MCP_SERVERS_CONFIG.md).
 
-2. **Restart Orchestrator**
+2. **Create Agent Configuration**
+
+Create `agent_configs/{agent_name}.json` referencing the MCP server:
+
+```json
+{
+  "agent_name": "bob",
+  "action_server": "email_mcp"
+}
+```
+
+Tools will be auto-discovered from the MCP server's OpenAPI spec.
+
+3. **Restart Orchestrator**
 
 ```bash
 cd orchestrator
@@ -184,7 +184,7 @@ You'll see:
 🔧 Loaded tool config for agent: bob (1 tools)
 ```
 
-3. **Agents Auto-Load Tools**
+4. **Agents Auto-Load Tools**
 
 When agents start, they automatically load their tools:
 ```
@@ -318,7 +318,9 @@ The agent uses AI to extract parameters from natural language. If extraction fai
 
 ## Example: Adding Email Tools
 
-1. **Create MCP Tool** (on your MCP server)
+1. **Setup MCP Server** (separate project)
+
+   Create your MCP server with email tools. Example:
    ```python
    @tool
    def check_latest_email():
@@ -326,34 +328,43 @@ The agent uses AI to extract parameters from natural language. If extraction fai
        return {"result": "You have 3 unread emails..."}
    ```
 
-2. **Update Agent Configuration**
+   Ensure it provides an OpenAPI spec at `/openapi.json`.
+
+2. **Configure MCP Server** in `action_servers.json`:
    ```json
    {
-     "agent_name": "bob",
-     "action_server": {
-       "url": "https://your-mcp-server.example.com",
-       "token": "your-token",
-       "type": "mcp"
-     },
-     "actions": [
-       {
-         "id": "check_latest_email",
-         "name": "Check Latest Email",
-         "description": "Retrieves latest unread emails",
-         "endpoint": "/api/actions/check-latest-email/run",
-         "parameters": [],
-         "enabled": true
+     "servers": {
+       "email_mcp": {
+         "name": "email_mcp",
+         "url": "http://localhost:8000",
+         "description": "Local MCP server with email tools",
+         "auto_discover": true
        }
-     ]
+     }
    }
    ```
 
-3. **Restart Orchestrator**
+3. **Assign Tools to Agent**
+
+   **Option A - Via Assistant:**
+   ```
+   User: Give bob the email tools
+   ```
+
+   **Option B - Manually** create `agent_configs/bob.json`:
+   ```json
+   {
+     "agent_name": "bob",
+     "action_server": "email_mcp"
+   }
+   ```
+
+4. **Restart Orchestrator** to discover tools:
    ```bash
    uvicorn app.main:app --reload --port 9000
    ```
 
-4. **Test**
+5. **Test**
    ```
    User: check my latest email
    Assistant: @bob please check latest email
