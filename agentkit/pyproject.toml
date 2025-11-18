@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentkit"
+version = "0.1.0"
+description = "Shared utilities for Eki's AI agents (MQTT, schemas, config)"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2.0.0",
+  "requests",
+  "redis",
+  "openai",
+  "python-dotenv",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agentkit*"]
