@@ -382,10 +382,9 @@ DEFAULT_MODEL = "gpt-5-nano"
 DEFAULT_TEMPERATURE = 0.7
 \`\`\`
 
-Available models:
-- \`gpt-4o\` - Most capable (higher cost)
-- \`gpt-4o-mini\` - Balanced (recommended)
-- \`gpt-3.5-turbo\` - Fast and economical
+Example models: \`gpt-5-mini\`, \`gpt-5-nano\`, \`gpt-4o\`, \`gpt-4o-mini\`
+
+Check [OpenAI's model documentation](https://platform.openai.com/docs/models) for the latest available models.
 
 After changing the model, restart all agents and the orchestrator for the changes to take effect.
 
